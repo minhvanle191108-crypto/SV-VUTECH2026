@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaRiver Culture | Du Thuyền Xanh Di Sản Ví, Giặm Sông La - VUTECH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf9',
+                            100: '#ccfbef',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#072f2d',
+                        },
+                        vutech: {
+                            blue: '#163676',
+                            red: '#C81E24',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Be Vietnam Pro"', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-page { display: none; animation: fadeSlide 0.3s ease-out; }
+        .tab-page.active { display: block; }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .nav-item.active {
+            color: #0f766e;
+            border-bottom: 3px solid #0f766e;
+            font-weight: 700;
+        }
+        .seat-btn { transition: all 0.2s ease; }
+        .seat-btn.selected {
+            background-color: #f59e0b !important;
+            color: #0f172a !important;
+            border-color: #d97706 !important;
+            transform: scale(1.06);
+            font-weight: 800;
+        }
+        @keyframes eq-bar {
+            0%, 100% { height: 6px; }
+            50% { height: 20px; }
+        }
+        .eq-anim { animation: eq-bar 0.7s infinite ease-in-out; }
+        .eq-anim:nth-child(2) { animation-delay: 0.15s; }
+        .eq-anim:nth-child(3) { animation-delay: 0.3s; }
+        .eq-anim:nth-child(4) { animation-delay: 0.45s; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-700 selection:text-white">
+
+    <!-- Định nghĩa Vector Logo VUTECH chuẩn để hiển thị sắc nét ở mọi góc trang web -->
+    <svg class="hidden" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="vutech-logo-symbol" viewBox="0 0 220 220">
+            <rect width="220" height="220" rx="28" fill="#ffffff"/>
+            <path d="M40 40 H86 C86 84 106 116 135 133 L115 168 C111 174 103 174 99 168 L36 53 C33 47 36 40 40 40 Z" fill="#163676"/>
+            <path d="M98 40 H126 C126 72 142 98 166 110 L152 134 C122 117 101 85 98 40 Z" fill="#163676"/>
+            <rect x="89" y="45" width="16" height="10" rx="2" transform="rotate(8 97 50)" fill="#163676"/>
+            <rect x="94" y="68" width="16" height="10" rx="2" transform="rotate(24 102 73)" fill="#163676"/>
+            <rect x="104" y="90" width="16" height="10" rx="2" transform="rotate(42 112 95)" fill="#163676"/>
+            <rect x="120" y="109" width="16" height="10" rx="2" transform="rotate(58 128 114)" fill="#163676"/>
+            <path d="M138 40 H180 C185 40 188 46 185 52 L162 92 C146 80 139 62 138 40 Z" fill="#C81E24"/>
+            <text x="110" y="201" text-anchor="middle" fill="#163676" font-family="'Be Vietnam Pro', Arial, sans-serif" font-weight="800" font-size="31" letter-spacing="1.5">VUTECH</text>
+        </symbol>
+    </svg>
+
+    <!-- Input ẩn cho phép tải file ảnh logo và ảnh sản phẩm thực tế từ máy -->
+    <input type="file" id="custom-logo-input" accept="image/*" class="hidden" onchange="handleLogoUpload(event)">
+    <input type="file" id="product-img-input" accept="image/*" class="hidden" onchange="handleProductImgUpload(event)">
+
+    <!-- TOPBAR -->
+    <div class="bg-brand-900 text-slate-200 text-xs py-2 px-4 border-b border-brand-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-3 sm:gap-5">
+                <span class="flex items-center gap-1.5 font-semibold text-amber-300">
+                    <span>🏆</span> Dự án SV-VUTECH 2026
+                </span>
+                <span class="hidden md:inline text-slate-500">|</span>
+                <span class="hidden md:inline">📍 Bến Tam Soa, Đức Thọ, Hà Tĩnh</span>
+                <span class="hidden lg:inline text-slate-500">|</span>
+                <span class="hidden lg:inline">☀️ Du thuyền Năng lượng Mặt trời & Hybrid (0% Khí thải - 0 dB Tiếng ồn)</span>
+                <span class="hidden sm:inline">|</span>
+                <span class="hidden sm:inline">📞 Hotline đặt vé: 0971006727 (07:00 - 21:30)</span>            
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="document.getElementById('custom-logo-input').click()" class="text-[11px] bg-white/10 hover:bg-white/20 text-white px-2.5 py-1 rounded transition" title="Đổi ảnh logo từ máy tính/điện thoại của bạn">
+                    🖼️ Đổi file ảnh Logo
+                </button>
+                <select onchange="changeLanguage(this.value)" id="global-lang" class="bg-brand-800 text-white px-2.5 py-1 rounded border border-brand-700 text-xs font-medium focus:outline-none">
+                    <option value="vi">🇻🇳 Tiếng Việt (VNĐ)</option>
+                    <option value="en">🇬🇧 English (USD)</option>
+                    <option value="fr">🇫🇷 Français (EUR)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER / NAVBAR CHÍNH -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <button onclick="switchPage('home')" class="flex items-center gap-3 text-left group">
+                    <div class="w-13 h-13 rounded-xl bg-white p-1 shadow-md border border-slate-200 flex items-center justify-center group-hover:scale-105 transition shrink-0">
+                        <svg class="vutech-svg-logo w-11 h-11"><use href="#vutech-logo-symbol"></use></svg>
+                        <img class="vutech-img-logo hidden w-11 h-11 object-contain" alt="VUTECH Logo">
+                    </div>
+                    <div class="h-9 w-[1px] bg-slate-200 hidden sm:block"></div>
+                    <div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-serif font-bold text-xl sm:text-2xl text-brand-900 tracking-tight leading-none">LARIVER CULTURE</span>
+                            <span class="hidden sm:inline-block text-[10px] font-extrabold bg-vutech-blue text-white px-2 py-0.5 rounded-full">VUTECH</span>
+                        </div>
+                        <span class="text-[11px] text-gold-600 font-semibold uppercase tracking-wider block mt-0.5">Di Sản Ví, Giặm Trên Du Thuyền Xanh Sông La</span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Menu Điều hướng -->
+            <nav class="hidden xl:flex items-center gap-5 text-sm text-slate-600 h-full">
+                <button onclick="switchPage('home')" id="nav-home" class="nav-item active h-full flex items-center px-1 transition">Trang chủ</button>
+                <button onclick="switchPage('booking')" id="nav-booking" class="nav-item h-full flex items-center px-1 transition">Đặt Vé & Combo Ẩm Thực</button>
+                <button onclick="switchPage('tech')" id="nav-tech" class="nav-item h-full flex items-center px-1 transition">Trải Nghiệm AR & GPS</button>
+                <button onclick="switchPage('shop')" id="nav-shop" class="nav-item h-full flex items-center px-1 transition">Quà Lưu Niệm Thủ Công</button>
+                <button onclick="switchPage('mice')" id="nav-mice" class="nav-item h-full flex items-center px-1 transition">Tour Doanh Nghiệp & Trường Học</button>
+                <button onclick="switchPage('impact')" id="nav-impact" class="nav-item h-full flex items-center px-1 transition">Nghệ Nhân & CLB Ví Giặm</button>
+            </nav>
+
+            <!-- Tác vụ Giỏ hàng & Đặt nhanh -->
+            <div class="flex items-center gap-2.5">
+                <button onclick="openCartDrawer()" class="relative p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 transition flex items-center gap-1.5" title="Xem giỏ hàng">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="text-xs font-bold hidden sm:inline">Giỏ hàng</span>
+                    <span id="header-cart-badge" class="bg-amber-500 text-slate-950 text-xs font-extrabold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </button>
+                <button onclick="switchPage('booking')" class="bg-gradient-to-r from-brand-700 to-brand-800 hover:from-brand-800 hover:to-brand-900 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-md transition">
+                    Đặt Vé Du Thuyền
+                </button>
+            </div>
+        </div>
+
+        <!-- Thanh Menu phụ trên Điện thoại / Tablet -->
+        <div class="flex xl:hidden overflow-x-auto bg-slate-50 border-t border-slate-200 px-4 py-2 gap-2 text-xs font-semibold whitespace-nowrap">
+            <button onclick="switchPage('home')" class="px-3 py-1.5 rounded-lg bg-brand-700 text-white">🏠 Trang chủ</button>
+            <button onclick="switchPage('booking')" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200">🎟️ Đặt Vé & Ẩm thực</button>
+            <button onclick="switchPage('tech')" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200">🥽 Kính AR & GPS</button>
+            <button onclick="switchPage('shop')" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200">🎁 Đồ lưu niệm</button>
+            <button onclick="switchPage('mice')" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200">🏫 Tour MICE/Trường học</button>
+            <button onclick="switchPage('impact')" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200">🎶 Nghệ nhân Ví Giặm</button>
+        </div>
+    </header>
+
+    <!-- ==================== TRANG 1: TRANG CHỦ ==================== -->
+    <div id="page-home" class="tab-page active">
+        <section class="relative bg-brand-900 text-white overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80" alt="Sông La Đức Thọ" class="w-full h-full object-cover opacity-40">
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-900/80 to-slate-900/60"></div>
+            </div>
+
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-24 lg:pt-20 lg:pb-32">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-amber-300 text-xs font-semibold">
+                            <span>🌿 Du thuyền Năng lượng Xanh • Di sản UNESCO Ví, Giặm Nghệ Tĩnh</span>
+                        </div>
+                        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                            Đánh Thức Miền Di Sản <span class="text-amber-400">Ví, Giặm</span> Trên Sông La
+                        </h1>
+                        <p class="text-slate-200 text-sm sm:text-base leading-relaxed max-w-2xl">
+                            Trải nghiệm du thuyền chạy bằng năng lượng mặt trời & động cơ điện hybrid êm ái tuyệt đối, kết hợp tai nghe thuyết minh tự động đa ngôn ngữ GPS, kính thực tế ảo tăng cường (AR) tái hiện văn hóa đôi bờ sông La và thưởng thức đặc sản Đức Thọ trứ danh.
+                        </p>
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <button onclick="switchPage('booking')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold px-6 py-3.5 rounded-xl shadow-lg transition flex items-center gap-2 text-sm">
+                                <span>Đặt Combo Du Thuyền & Ẩm Thực</span>
+                                <span>→</span>
+                            </button>
+                            <button onclick="switchPage('tech')" class="bg-white/15 hover:bg-white/25 backdrop-blur-md text-white font-semibold px-6 py-3.5 rounded-xl border border-white/25 transition text-sm">
+                                🥽 Trải Nghiệm Thử AR & GPS Ngay
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/15 max-w-xl">
+                            <div>
+                                <div class="text-2xl font-extrabold text-amber-400">0% Xả Thải</div>
+                                <div class="text-xs text-slate-300">Năng lượng mặt trời & điện Hybrid không tiếng ồn</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-extrabold text-amber-400">AR + GPS</div>
+                                <div class="text-xs text-slate-300">Thuyết minh tự động đa ngôn ngữ & tái hiện 3D</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-extrabold text-amber-400">100% Bản Địa</div>
+                                <div class="text-xs text-slate-300">Ẩm thực Đức Thọ & Nghệ nhân CLB Ví, Giặm</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="bg-white/95 text-slate-800 rounded-3xl p-6 shadow-2xl border border-amber-200">
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+                                <div class="flex items-center gap-2.5">
+                                    <svg class="vutech-svg-logo w-8 h-8"><use href="#vutech-logo-symbol"></use></svg>
+                                    <img class="vutech-img-logo hidden w-8 h-8 object-contain" alt="VUTECH">
+                                    <div>
+                                        <span class="text-[11px] font-bold uppercase text-vutech-blue block">Lịch khởi hành hôm nay</span>
+                                        <h3 class="font-bold text-slate-900 text-base">Bến Tam Soa – Đôi Bờ Sông La</h3>
+                                    </div>
+                                </div>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Còn chỗ
+                                </span>
+                            </div>
+
+                            <div class="space-y-3 text-xs">
+                                <div class="p-3 rounded-xl bg-brand-50 border border-brand-100 flex justify-between items-center">
+                                    <div>
+                                        <div class="font-bold text-brand-900 text-sm">🌅 Chuyến Hoàng Hôn Sông La</div>
+                                        <div class="text-slate-600">16:30 - 18:30 • Nghe Ví, Giặm + Thưởng thức Hến sông La</div>
+                                    </div>
+                                    <span class="font-extrabold text-brand-700 text-sm">350.000đ</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-amber-50 border border-amber-100 flex justify-between items-center">
+                                    <div>
+                                        <div class="font-bold text-amber-900 text-sm">🌕 Chuyến Đêm Trăng Di Sản</div>
+                                        <div class="text-slate-600">19:00 - 21:00 • Giao lưu Nghệ nhân + Kính AR & GPS</div>
+                                    </div>
+                                    <span class="font-extrabold text-amber-700 text-sm">190.000đ</span>
+                                </div>
+                                <div class="p-3 rounded-xl bg-indigo-50 border border-indigo-100 flex justify-between items-center">
+                                    <div>
+                                        <div class="font-bold text-indigo-900 text-sm">🏫 Tour Trường Học & Doanh Nghiệp (MICE)</div>
+                                        <div class="text-slate-600">Thiết kế riêng theo đoàn • Trải nghiệm di sản & ẩm thực</div>
+                                    </div>
+                                    <span class="font-extrabold text-indigo-700 text-sm">Ưu đãi đoàn</span>
+                                </div>
+                            </div>
+
+                            <button onclick="switchPage('booking')" class="mt-4 w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-3 rounded-xl shadow transition text-sm">
+                                Chọn Chỗ Ngồi & Đặt Vé Ngay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thanh Đặt Vé Nhanh -->
+            <div class="max-w-6xl mx-auto px-4 -mt-12 relative z-20 pb-6">
+                <div class="bg-white text-slate-800 rounded-2xl shadow-xl p-5 border border-slate-200 grid grid-cols-1 md:grid-cols-5 gap-4 items-end">
+                    <div class="md:col-span-2">
+                        <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">Gói dịch vụ trải nghiệm</label>
+                        <select id="home-quick-pkg" class="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 font-semibold text-xs sm:text-sm">
+                            <option value="Combo Du thuyền + Ẩm thực Đặc sản Đức Thọ|350000">Combo Du thuyền + Ẩm thực Đặc sản Đức Thọ (350.000đ)</option>
+                            <option value="Vé Du thuyền Xanh & Diễn xướng Ví, Giặm + AR/GPS|190000">Vé Du thuyền Xanh & Diễn xướng Ví, Giặm + AR/GPS (190.000đ)</option>
+                            <option value="Combo VIP Hoàng Hôn + Ẩm thực + Quà lưu niệm|450000">Combo VIP Hoàng Hôn + Ẩm thực + Quà lưu niệm (450.000đ)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">Ngày đi</label>
+                        <input type="date" id="home-quick-date" value="2026-10-20" class="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm font-semibold">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">Số lượng khách</label>
+                        <input type="number" id="home-quick-qty" value="2" min="1" max="50" class="w-full p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm font-bold">
+                    </div>
+                    <div>
+                        <button onclick="quickAddFromHome()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold py-3 px-4 rounded-xl shadow transition text-sm">
+                            + Thêm Vào Giỏ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 Trụ Cột Giá Trị Cốt Lõi Của Dự Án -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-brand-700 font-bold text-xs uppercase tracking-widest bg-brand-50 px-3.5 py-1.5 rounded-full border border-brand-100">Hệ sinh thái LaRiver Culture</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-3">Sự Giao Thoa Giữa Di Sản, Công Nghệ Xanh & Sinh Kế Bản Địa</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div onclick="switchPage('tech')" class="cursor-pointer bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-800 flex items-center justify-center text-2xl mb-4">🥽</div>
+                    <h3 class="font-bold text-base text-slate-900">1. Công Nghệ AR & Tai Nghe GPS</h3>
+                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">Sử dụng tai nghe thuyết minh tự động đa ngôn ngữ theo tọa độ GPS và kính thực tế ảo tăng cường (AR) tái hiện không gian văn hóa đôi bờ sông La qua các thời kỳ.</p>
+                    <span class="inline-block mt-4 text-xs font-bold text-brand-700">Dùng thử trình mô phỏng →</span>
+                </div>
+
+                <div onclick="switchPage('tech')" class="cursor-pointer bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-2xl mb-4">☀️</div>
+                    <h3 class="font-bold text-base text-slate-900">2. Du Thuyền Năng Lượng Xanh</h3>
+                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">Thiết kế du thuyền chạy bằng năng lượng mặt trời hoặc động cơ điện hybrid đảm bảo không xả thải, không tiếng ồn động cơ làm ảnh hưởng đến buổi diễn xướng.</p>
+                    <span class="inline-block mt-4 text-xs font-bold text-emerald-700">Xem thông số kỹ thuật →</span>
+                </div>
+
+                <div onclick="switchPage('shop')" class="cursor-pointer bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-2xl mb-4">🍲</div>
+                    <h3 class="font-bold text-base text-slate-900">3. Ẩm Thực & Đặc Sản Quà Tặng</h3>
+                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">Kết hợp vé đi thuyền với Combo ẩm thực Đức Thọ, bán đồ lưu niệm thủ công (Mô hình thuyền gỗ, Nón lá thư pháp, Bánh gai, Bưởi Phúc Trạch, Rượu nếp).</p>
+                    <span class="inline-block mt-4 text-xs font-bold text-amber-700">Xem Cửa hàng Đặc sản →</span>
+                </div>
+
+                <div onclick="switchPage('impact')" class="cursor-pointer bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-800 flex items-center justify-center text-2xl mb-4">🎶</div>
+                    <h3 class="font-bold text-base text-slate-900">4. Sinh Kế Nghệ Nhân & Trẻ Hóa</h3>
+                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">Kết hợp với các Nghệ nhân Dân gian và CLB Ví Giặm địa phương để tạo sinh kế bền vững cho họ, giải quyết bài toán "trẻ hóa" lực lượng biểu diễn.</p>
+                    <span class="inline-block mt-4 text-xs font-bold text-indigo-700">Gặp gỡ Nghệ nhân & CLB →</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Đánh giá thực tế -->
+        <section class="bg-white py-14 border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                    <div>
+                        <span class="text-amber-600 font-bold text-xs uppercase tracking-widest">Đánh giá 4.9/5 ⭐ từ du khách</span>
+                        <h2 class="font-serif text-3xl font-bold text-slate-900 mt-1">Cảm Nhận Sau Chuyến Du Thuyền Sông La</h2>
+                    </div>
+                    <button onclick="switchPage('booking')" class="text-xs font-bold bg-slate-100 hover:bg-slate-200 px-4 py-2.5 rounded-xl">Đặt vé trải nghiệm ngay →</button>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6 text-xs">
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+                        <div class="text-amber-500 font-bold">★★★★★ <span class="text-slate-500 font-normal">• Combo Du thuyền + Ẩm thực</span></div>
+                        <p class="text-slate-700 leading-relaxed">"Thuyền chạy bằng điện mặt trời nên cực kỳ êm, không hề nghe tiếng máy nổ hay mùi dầu. Ngồi giữa sông La nghe các bác nghệ nhân hát Ví, Giặm và ăn hến xúc bánh tráng Đức Thọ thực sự rất xúc động!"</p>
+                        <div class="font-bold text-slate-900">— Chị Nguyễn Thanh Hương (Du khách Hà Nội)</div>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+                        <div class="text-amber-500 font-bold">★★★★★ <span class="text-slate-500 font-normal">• Tour Trường học trải nghiệm di sản</span></div>
+                        <p class="text-slate-700 leading-relaxed">"Học sinh rất hào hứng khi đeo kính AR nhìn thấy cảnh bến Tam Soa xưa và được giao lưu trực tiếp với các anh chị sinh viên trong CLB Ví Giặm trẻ. Một buổi học ngoại khóa lịch sử - văn hóa quá tuyệt vời."</p>
+                        <div class="font-bold text-slate-900">— Thầy Trần Minh Đức (Đoàn trường THPT)</div>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+                        <div class="text-amber-500 font-bold">★★★★★ <span class="text-slate-500 font-normal">• Khách quốc tế (GPS Audio Guide)</span></div>
+                        <p class="text-slate-700 leading-relaxed">"The automatic GPS multi-language headset and AR glasses helped me understand every historical story along the La River and the meaning of Vi, Giam folk songs."</p>
+                        <div class="font-bold text-slate-900">— Mr. Jean-Luc Moreau (Du khách Pháp)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==================== TRANG 2: ĐẶT VÉ, COMBO ẨM THỰC & CHỌN GHẾ ==================== -->
+    <div id="page-booking" class="tab-page py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-8">
+            <span class="text-brand-700 font-bold text-xs uppercase tracking-widest">Đặt vé & Chọn chỗ trực tuyến</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-1">Gói Vé Du Thuyền, Combo Ẩm Thực Đức Thọ & Chọn Ghế Trên Boong</h2>
+            <p class="text-sm text-slate-600 mt-1">Chọn gói vé kết hợp đặc sản địa phương và bấm chọn vị trí ghế ngồi yêu thích trên sơ đồ Du thuyền Xanh.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-7 space-y-5">
+                <div class="bg-white rounded-2xl p-6 border-2 border-amber-400 shadow-md relative">
+                    <span class="absolute -top-3 right-5 bg-amber-500 text-slate-950 text-[11px] font-extrabold px-3 py-0.5 rounded-full">Bán chạy #1</span>
+                    <div class="flex flex-col sm:flex-row justify-between gap-4">
+                        <div class="space-y-2">
+                            <span class="text-xs font-bold text-amber-700 uppercase">Combo Du thuyền + Ẩm thực đặc sản Đức Thọ</span>
+                            <h3 class="font-bold text-lg text-slate-900">Combo Trọn Gói: Vé Du Thuyền Xanh + Mâm Đặc Sản Đức Thọ</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Bao gồm: Vé du thuyền năng lượng xanh 150 phút, thưởng thức diễn xướng Ví, Giặm, tai nghe GPS + kính AR, và <strong>Mâm đặc sản Đức Thọ: Hến sông La xào xúc bánh tráng vừng giòn, Canh hến, Rượu nếp truyền thống</strong>.
+                            </p>
+                        </div>
+                        <div class="text-right shrink-0">
+                            <div class="text-2xl font-extrabold text-amber-600">350.000đ</div>
+                            <div class="text-[11px] text-slate-400">/ khách trọn gói</div>
+                            <button onclick="addItemToCart('Combo Du thuyền + Ẩm thực Đức Thọ (Bánh tráng, Hến sông La, Rượu nếp)', 350000)" class="mt-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl shadow transition">
+                                + Thêm Combo vào giỏ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                    <div class="flex flex-col sm:flex-row justify-between gap-4">
+                        <div class="space-y-2">
+                            <span class="text-xs font-bold text-brand-700 uppercase">Vé tiêu chuẩn</span>
+                            <h3 class="font-bold text-lg text-slate-900">Vé Du Thuyền Xanh & Thưởng Thức Di Sản Ví, Giặm + AR/GPS</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Bao gồm: Vé du thuyền 120 phút, nghe biểu diễn Ví, Giặm trực tiếp, sử dụng tai nghe thuyết minh tự động đa ngôn ngữ GPS, kính thực tế ảo AR và trà sen thảo mộc.
+                            </p>
+                        </div>
+                        <div class="text-right shrink-0">
+                            <div class="text-2xl font-extrabold text-brand-700">190.000đ</div>
+                            <div class="text-[11px] text-slate-400">/ khách</div>
+                            <button onclick="addItemToCart('Vé Du thuyền Xanh & Di sản Ví, Giặm + AR/GPS', 190000)" class="mt-3 bg-brand-700 hover:bg-brand-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition">
+                                + Thêm Vé vào giỏ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50/70 rounded-2xl p-5 border border-amber-200">
+                    <h4 class="font-bold text-sm text-slate-900 mb-3">🍲 Đặt thêm món Đặc sản Đức Thọ phục vụ tại bàn trên thuyền:</h4>
+                    <div class="grid sm:grid-cols-3 gap-3 text-xs">
+                        <div class="bg-white p-3 rounded-xl border border-amber-100 flex flex-col justify-between">
+                            <div>
+                                <div class="font-bold text-slate-900">Mẹt Hến Sông La Xúc Bánh Tráng</div>
+                                <div class="text-slate-500 mt-0.5">Phần cho 2-3 người ăn</div>
+                            </div>
+                            <div class="mt-3 flex items-center justify-between">
+                                <span class="font-extrabold text-amber-700">95.000đ</span>
+                                <button onclick="addItemToCart('Mẹt Hến Sông La Xúc Bánh Tráng Đức Thọ', 95000)" class="bg-amber-100 hover:bg-amber-500 hover:text-slate-950 text-amber-900 font-bold px-2.5 py-1 rounded-lg transition">+ Thêm</button>
+                            </div>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-amber-100 flex flex-col justify-between">
+                            <div>
+                                <div class="font-bold text-slate-900">Nậm Rượu Nếp Đức Thọ Ủ Men Lá</div>
+                                <div class="text-slate-500 mt-0.5">Nậm gốm 500ml ấm nồng</div>
+                            </div>
+                            <div class="mt-3 flex items-center justify-between">
+                                <span class="font-extrabold text-amber-700">75.000đ</span>
+                                <button onclick="addItemToCart('Nậm Rượu Nếp Đức Thọ (500ml)', 75000)" class="bg-amber-100 hover:bg-amber-500 hover:text-slate-950 text-amber-900 font-bold px-2.5 py-1 rounded-lg transition">+ Thêm</button>
+                            </div>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-amber-100 flex flex-col justify-between">
+                            <div>
+                                <div class="font-bold text-slate-900">Set Bánh Gai Đức Thọ & Trà Sen</div>
+                                <div class="text-slate-500 mt-0.5">Thưởng thức cùng trà nóng</div>
+                            </div>
+                            <div class="mt-3 flex items-center justify-between">
+                                <span class="font-extrabold text-amber-700">65.000đ</span>
+                                <button onclick="addItemToCart('Set Bánh Gai Đức Thọ & Trà Sen', 65000)" class="bg-amber-100 hover:bg-amber-500 hover:text-slate-950 text-amber-900 font-bold px-2.5 py-1 rounded-lg transition">+ Thêm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cột Phải: Sơ đồ chọn chỗ ngồi -->
+            <div class="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-200 shadow-md space-y-4 h-fit">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase text-brand-700">Tác vụ trực quan</span>
+                        <h3 class="font-serif text-xl font-bold text-slate-900">Sơ Đồ Chọn Bàn Trên Du Thuyền Xanh</h3>
+                    </div>
+                    <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full">☀️ Mái Pin Mặt Trời</span>
+                </div>
+                <p class="text-xs text-slate-500">Bấm chọn vị trí bàn bạn muốn ngồi để hệ thống giữ chỗ kèm vé:</p>
+
+                <div class="bg-brand-900 text-white rounded-3xl p-5 border-4 border-brand-700 space-y-4">
+                    <div class="text-center text-xs font-bold text-amber-300 bg-white/10 py-1.5 rounded-t-2xl">
+                        ▲ MŨI DU THUYỀN (Góc nhìn toàn cảnh Bến Tam Soa & AR)
+                    </div>
+
+                    <div class="bg-amber-500/20 border border-amber-400/50 rounded-xl p-2.5 text-center text-xs font-bold text-amber-300">
+                        🎶 SÂN KHẤU DIỄN XƯỚNG VÍ, GIẶM (0 dB Tiếng ồn động cơ)
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2.5 text-xs">
+                        <button onclick="selectBoatSeat(this, 'Bàn Mũi Thuyền A1')" class="seat-btn p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-center">Bàn A1<br><span class="text-[10px] text-slate-300">Mũi thuyền</span></button>
+                        <button onclick="selectBoatSeat(this, 'Bàn Trung Tâm A2')" class="seat-btn selected p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-center">Bàn A2<br><span class="text-[10px]">Sát sân khấu</span></button>
+                        <button onclick="selectBoatSeat(this, 'Bàn Mũi Thuyền A3')" class="seat-btn p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-center">Bàn A3<br><span class="text-[10px] text-slate-300">Mũi thuyền</span></button>
+
+                        <button onclick="selectBoatSeat(this, 'Bàn Mạn Trái B1')" class="seat-btn p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-center">Bàn B1<br><span class="text-[10px] text-slate-300">Mạn trái</span></button>
+                        <button onclick="selectBoatSeat(this, 'Bàn Trung Tâm B2')" class="seat-btn p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-center">Bàn B2<br><span class="text-[10px] text-slate-300">Giữa boong</span></button>
+                        <button onclick="selectBoatSeat(this, 'Bàn Mạn Phải B3')" class="seat-btn p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-center">Bàn B3<br><span class="text-[10px] text-slate-300">Mạn phải</span></button>
+                    </div>
+
+                    <div class="text-center text-[11px] text-emerald-300 bg-emerald-950/80 py-1.5 rounded-xl border border-emerald-700">
+                        ⚡ Khoang Động Cơ Điện Hybrid Êm Ái – Không Khói Thải
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs bg-slate-50 p-3 rounded-xl border border-slate-200">
+                    <span>Vị trí đang chọn: <strong id="selected-seat-label" class="text-brand-700">Bàn Trung Tâm A2</strong></span>
+                    <button onclick="openCartDrawer()" class="text-brand-700 font-bold underline">Tiến hành thanh toán →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TRANG 3: TRẢI NGHIỆM CÔNG NGHỆ AR, GPS & DU THUYỀN XANH ==================== -->
+    <div id="page-tech" class="tab-page py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-8">
+            <span class="text-brand-700 font-bold text-xs uppercase tracking-widest">Yếu tố Đổi mới sáng tạo (Innovation)</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-1">Trình Mô Phỏng Tai Nghe GPS Đa Ngôn Ngữ, Kính AR & Năng Lượng Xanh</h2>
+            <p class="text-sm text-slate-600 mt-1">Bấm chọn các tọa độ dọc sông La để nghe thử thuyết minh tự động và bật lớp phủ Thực tế ảo tăng cường (AR) tái hiện lịch sử đôi bờ.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-8 bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl space-y-5">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-700 pb-4">
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="setGpsStation(0)" id="st-0" class="px-3.5 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs">📍 GPS 1: Bến Tam Soa</button>
+                        <button onclick="setGpsStation(1)" id="st-1" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs hover:bg-slate-700">📍 GPS 2: Không Gian Ví, Giặm</button>
+                        <button onclick="setGpsStation(2)" id="st-2" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs hover:bg-slate-700">📍 GPS 3: Làng Nghề & Ẩm Thực Đức Thọ</button>
+                    </div>
+
+                    <div class="flex items-center gap-1 bg-slate-800 p-1 rounded-xl border border-slate-700 text-xs">
+                        <button onclick="setGpsLang('vi')" id="gl-vi" class="px-2.5 py-1 rounded-lg bg-brand-600 text-white font-bold">🇻🇳 VI</button>
+                        <button onclick="setGpsLang('en')" id="gl-en" class="px-2.5 py-1 rounded-lg text-slate-300">🇬🇧 EN</button>
+                        <button onclick="setGpsLang('fr')" id="gl-fr" class="px-2.5 py-1 rounded-lg text-slate-300">🇫🇷 FR</button>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden h-72 sm:h-80 border border-slate-700">
+                    <img id="tech-scene-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover transition duration-500" alt="Sông La">
+                    <div id="tech-ar-layer" class="hidden absolute inset-0 bg-gradient-to-t from-slate-950/95 via-amber-900/45 to-slate-900/40 p-5 flex flex-col justify-between border-2 border-amber-400 rounded-2xl">
+                        <div class="flex justify-between items-center">
+                            <span class="bg-amber-400 text-slate-950 text-xs font-extrabold px-3 py-1 rounded-full shadow">🥽 KÍNH AR ĐANG BẬT: TÁI HIỆN KHÔNG GIAN VĂN HÓA XƯA</span>
+                            <span class="text-xs font-mono text-amber-200 bg-slate-900/80 px-2.5 py-1 rounded">GPS AUTO-TRIGGER</span>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-3">
+                            <div class="bg-slate-950/85 backdrop-blur-md p-3.5 rounded-xl border border-amber-400/50 text-amber-200 text-xs" id="tech-ar-desc">
+                                ✨ <strong>Tái hiện 3D Thế kỷ XIX:</strong> Đoàn thuyền mộc buôn gỗ xuôi dòng sông La, cảnh chợ bến Tam Soa tấp nập và hình ảnh cư dân hát đối đáp Ví đò đưa.
+                            </div>
+                            <div class="bg-emerald-950/85 backdrop-blur-md p-3.5 rounded-xl border border-emerald-400/50 text-emerald-200 text-xs">
+                                🎧 <strong>Đồng bộ phụ đề AR:</strong> Hiển thị lời thơ Ví, Giặm cổ và bản dịch đa ngôn ngữ ngay trên tầm mắt du khách.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <h3 id="tech-station-title" class="font-serif text-2xl font-bold text-amber-400">Trạm GPS #1: Bến Tam Soa & Lịch Sử Đôi Bờ Sông La</h3>
+                        <button onclick="toggleTechAr()" id="tech-ar-btn" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow transition">
+                            🥽 Bật Chế Độ Kính Thực Tế Ảo (AR)
+                        </button>
+                    </div>
+                    <p id="tech-station-script" class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Khi du thuyền đi qua ngã ba Bến Tam Soa – nơi hội tụ của sông Ngàn Sâu và Ngàn Phố tạo nên dòng sông La, tai nghe GPS tự động thuyết minh về lịch sử bến thương cảng cổ và làn điệu Ví đò đưa.
+                    </p>
+
+                    <div class="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                        <button onclick="toggleVoiceNarration()" id="voice-play-btn" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-xs px-5 py-2.5 rounded-xl flex items-center gap-2 transition">
+                            <span id="voice-btn-icon">▶</span>
+                            <span id="voice-btn-text">Nghe Thuyết Minh Tự Động Qua Tai Nghe GPS</span>
+                        </button>
+                        <div id="voice-eq" class="hidden items-center gap-1.5">
+                            <span class="w-1 bg-emerald-400 rounded eq-anim"></span>
+                            <span class="w-1 bg-emerald-400 rounded eq-anim"></span>
+                            <span class="w-1 bg-emerald-400 rounded eq-anim"></span>
+                            <span class="w-1 bg-emerald-400 rounded eq-anim"></span>
+                            <span class="text-xs text-emerald-300 ml-1">Đang phát thuyết minh GPS...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-4 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
+                <div class="space-y-4">
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">☀️ Năng lượng Xanh (Green Cruise)</span>
+                    <h3 class="font-serif text-2xl font-bold text-slate-900">Hệ Thống Pin Mặt Trời & Động Cơ Điện Hybrid</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Du thuyền được thiết kế chạy bằng năng lượng mặt trời hoặc động cơ điện hybrid nhằm đảm bảo <strong>không xả thải</strong> và <strong>không tiếng ồn động cơ</strong> làm ảnh hưởng đến không gian buổi diễn xướng Ví, Giặm.
+                    </p>
+
+                    <div class="space-y-3 pt-2 text-xs">
+                        <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 flex justify-between items-center">
+                            <div>
+                                <div class="font-bold text-slate-900">Độ ồn động cơ khi biểu diễn</div>
+                                <div class="text-slate-500">Giữ âm thanh mộc nguyên bản</div>
+                            </div>
+                            <span class="text-base font-extrabold text-emerald-700">0 dB</span>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 flex justify-between items-center">
+                            <div>
+                                <div class="font-bold text-slate-900">Khí thải & Dầu máy ra sông La</div>
+                                <div class="text-slate-500">Bảo vệ nguồn nước & hến sông La</div>
+                            </div>
+                            <span class="text-base font-extrabold text-emerald-700">0% Xả thải</span>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 flex justify-between items-center">
+                            <div>
+                                <div class="font-bold text-slate-900">Nguồn điện nuôi thiết bị AR/GPS</div>
+                                <div class="text-slate-500">Pin mặt trời áp mái tự cung</div>
+                            </div>
+                            <span class="text-base font-extrabold text-amber-700">100% Solar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="switchPage('booking')" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-3 rounded-xl text-xs shadow transition">
+                    Đặt Vé Trải Nghiệm Du Thuyền Xanh →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TRANG 4: CỬA HÀNG ĐỒ LƯU NIỆM THỦ CÔNG & ĐẶC SẢN ==================== -->
+    <div id="page-shop" class="tab-page py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+            <div>
+                <span class="text-brand-700 font-bold text-xs uppercase tracking-widest">Cửa hàng lưu niệm & Đặc sản</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-1">Đồ Lưu Niệm Thủ Công & Đặc Sản Đức Thọ – Hà Tĩnh Mang Về</h2>
+                <p class="text-sm text-slate-600 mt-1">Sản phẩm thủ công từ các làng nghề đôi bờ sông La và đặc sản Bánh gai, Bưởi Phúc Trạch, Rượu nếp, Bánh tráng đóng gói làm quà. <span class="text-brand-700 font-semibold">(Mẹo: Bấm nút "📷 Chọn ảnh" trên từng sản phẩm nếu muốn nạp nhanh file ảnh từ máy tính của bạn)</span>.</p>
+            </div>
+            <button onclick="openCartDrawer()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl shadow">
+                🛒 Mở Giỏ Hàng Thanh Toán
+            </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- SẢN PHẨM 1: MÔ HÌNH DU THUYỀN GỖ SÔNG LA (ẢNH 5: image_0a51da.jpg) -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between group">
+                <div>
+                    <div class="relative h-56 bg-slate-100 overflow-hidden">
+                        <img id="shop-img-boat" src="image_0a51da.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80'" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" alt="Mô hình Du thuyền gỗ Sông La chạm khắc câu hát Ví, Giặm">
+                        <button onclick="triggerProductImgUpload('shop-img-boat')" class="absolute top-2.5 right-2.5 bg-slate-900/75 hover:bg-slate-900 text-white text-[10px] font-semibold px-2.5 py-1 rounded-lg backdrop-blur-sm transition">
+                            📷 Chọn ảnh 5 (Thuyền gỗ)
+                        </button>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-[10px] font-bold uppercase text-brand-700 bg-brand-50 px-2.5 py-1 rounded">Đồ lưu niệm thủ công</span>
+                        <h3 class="font-bold text-base text-slate-900 mt-2">Mô Hình Du Thuyền Gỗ Sông La Chạm Khắc Thủ Công</h3>
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Chế tác thủ công bởi nghệ nhân mộc Thái Yên – Đức Thọ, thân thuyền chạm khắc tinh xảo dòng chữ <em>"Ơi câu Ví, Giặm ân tình xứ Nghệ"</em>.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex items-center justify-between">
+                    <span class="text-lg font-extrabold text-brand-700">185.000đ</span>
+                    <button onclick="addItemToCart('Mô Hình Du Thuyền Gỗ Sông La Thủ Công', 185000)" class="bg-slate-900 hover:bg-brand-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl transition">+ Thêm vào giỏ</button>
+                </div>
+            </div>
+
+            <!-- SẢN PHẨM 2: BÁNH GAI ĐỨC THỌ (ẢNH 3: image_0a519d.jpg) -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between group">
+                <div>
+                    <div class="relative h-56 bg-slate-100 overflow-hidden">
+                        <img id="shop-img-banhgai" src="image_0a519d.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587248720327-8eb72564be1e?auto=format&fit=crop&w=800&q=80'" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" alt="Đặc sản Bánh Gai Đức Thọ">
+                        <button onclick="triggerProductImgUpload('shop-img-banhgai')" class="absolute top-2.5 right-2.5 bg-slate-900/75 hover:bg-slate-900 text-white text-[10px] font-semibold px-2.5 py-1 rounded-lg backdrop-blur-sm transition">
+                            📷 Chọn ảnh 3 (Bánh gai)
+                        </button>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-[10px] font-bold uppercase text-amber-700 bg-amber-50 px-2.5 py-1 rounded">Đặc sản Đức Thọ</span>
+                        <h3 class="font-bold text-base text-slate-900 mt-2">Bánh Gai Đức Thọ (Hộp Quà 10 Cái)</h3>
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Bánh gai dẻo thơm làm từ lá gai, gạo nếp, nhân đậu xanh, dừa nạo, hạt sen và mật mía xứ Nghệ, đóng hộp quà 10 cái sang trọng.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex items-center justify-between">
+                    <span class="text-lg font-extrabold text-brand-700">90.000đ</span>
+                    <button onclick="addItemToCart('Bánh Gai Đức Thọ (Hộp quà 10 cái)', 90000)" class="bg-slate-900 hover:bg-brand-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl transition">+ Thêm vào giỏ</button>
+                </div>
+            </div>
+
+            <!-- SẢN PHẨM 3: BƯỞI PHÚC TRẠCH (ẢNH 1: image_0a5142.jpg) -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between group">
+                <div>
+                    <div class="relative h-56 bg-slate-100 overflow-hidden">
+                        <img id="shop-img-buoi" src="image_0a5142.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1590502593747-42a996133562?auto=format&fit=crop&w=800&q=80'" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" alt="Đặc sản Bưởi Phúc Trạch Hà Tĩnh">
+                        <button onclick="triggerProductImgUpload('shop-img-buoi')" class="absolute top-2.5 right-2.5 bg-slate-900/75 hover:bg-slate-900 text-white text-[10px] font-semibold px-2.5 py-1 rounded-lg backdrop-blur-sm transition">
+                            📷 Chọn ảnh 1 (Bưởi Phúc Trạch)
+                        </button>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded">Đặc sản Hà Tĩnh</span>
+                        <h3 class="font-bold text-base text-slate-900 mt-2">Bưởi Phúc Trạch Đặc Sản Thượng Hạng</h3>
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Giống bưởi danh tiếng vùng thượng nguồn với tép bưởi hồng đào giòn mọng, vị ngọt thanh pha chút hậu vị thơm mát, chuẩn chỉ dẫn địa lý.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex items-center justify-between">
+                    <span class="text-lg font-extrabold text-brand-700">75.000đ</span>
+                    <button onclick="addItemToCart('Bưởi Phúc Trạch Đặc Sản Thượng Hạng', 75000)" class="bg-slate-900 hover:bg-brand-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl transition">+ Thêm vào giỏ</button>
+                </div>
+            </div>
+
+            <!-- SẢN PHẨM 4: BÌNH GỐM RƯỢU NẾP TRUYỀN THỐNG (ẢNH 2: image_0a5181.jpg) -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between group">
+                <div>
+                    <div class="relative h-56 bg-slate-100 overflow-hidden">
+                        <img id="shop-img-ruou" src="image_0a5181.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80'" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" alt="Bình Gốm Rượu Nếp Truyền Thống">
+                        <button onclick="triggerProductImgUpload('shop-img-ruou')" class="absolute top-2.5 right-2.5 bg-slate-900/75 hover:bg-slate-900 text-white text-[10px] font-semibold px-2.5 py-1 rounded-lg backdrop-blur-sm transition">
+                            📷 Chọn ảnh 2 (Rượu nếp)
+                        </button>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-[10px] font-bold uppercase text-amber-700 bg-amber-50 px-2.5 py-1 rounded">Đặc sản Truyền thống</span>
+                        <h3 class="font-bold text-base text-slate-900 mt-2">Bình Gốm Rượu Nếp Truyền Thống Đức Thọ (750ml)</h3>
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Ủ men lá cổ truyền ngọt dịu, đóng bình gốm men ngọc kèm bộ 2 chén gốm và hộp quà biếu sang trọng.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex items-center justify-between">
+                    <span class="text-lg font-extrabold text-brand-700">160.000đ</span>
+                    <button onclick="addItemToCart('Bình Gốm Rượu Nếp Đức Thọ (750ml)', 160000)" class="bg-slate-900 hover:bg-brand-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl transition">+ Thêm vào giỏ</button>
+                </div>
+            </div>
+
+            <!-- SẢN PHẨM 5: NÓN LÁ & QUẠT LỤA THƯ PHÁP VÍ, GIẶM (ẢNH 4: image_0a51bb.jpg) -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between group">
+                <div>
+                    <div class="relative h-56 bg-slate-100 overflow-hidden">
+                        <img id="shop-img-nonquat" src="image_0a51bb.jpg" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80'" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" alt="Nón Lá & Quạt Lụa Thư Pháp Ví Giặm">
+                        <button onclick="triggerProductImgUpload('shop-img-nonquat')" class="absolute top-2.5 right-2.5 bg-slate-900/75 hover:bg-slate-900 text-white text-[10px] font-semibold px-2.5 py-1 rounded-lg backdrop-blur-sm transition">
+                            📷 Chọn ảnh 4 (Nón & Quạt)
+                        </button>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-[10px] font-bold uppercase text-brand-700 bg-brand-50 px-2.5 py-1 rounded">Đồ lưu niệm thủ công</span>
+                        <h3 class="font-bold text-base text-slate-900 mt-2">Nón Lá & Quạt Lụa Thư Pháp Câu Hát Ví, Giặm</h3>
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Vẽ tay phong cảnh bến Tam Soa – sông La và đề thơ thư pháp: <em>"Ai về Hà Tĩnh thì về, Ghé bến Tam Soa ngắm dòng La Giang"</em>.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex items-center justify-between">
+                    <span class="text-lg font-extrabold text-brand-700">95.000đ</span>
+                    <button onclick="addItemToCart('Nón Lá & Quạt Lụa Thư Pháp Ví Giặm', 95000)" class="bg-slate-900 hover:bg-brand-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl transition">+ Thêm vào giỏ</button>
+                </div>
+            </div>
+
+            <!-- SẢN PHẨM 6: SET QUÀ BÁNH TRÁNG VỪNG ĐEN ĐỨC THỌ -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between group">
+                <div>
+                    <div class="relative h-56 bg-slate-100 overflow-hidden">
+                        <img id="shop-img-banhtrang" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" alt="Bánh tráng Đức Thọ">
+                        <button onclick="triggerProductImgUpload('shop-img-banhtrang')" class="absolute top-2.5 right-2.5 bg-slate-900/75 hover:bg-slate-900 text-white text-[10px] font-semibold px-2.5 py-1 rounded-lg backdrop-blur-sm transition">
+                            📷 Đổi ảnh
+                        </button>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-[10px] font-bold uppercase text-amber-700 bg-amber-50 px-2.5 py-1 rounded">Đặc sản Đức Thọ</span>
+                        <h3 class="font-bold text-base text-slate-900 mt-2">Set Quà Bánh Tráng Vừng Đen Đức Thọ (50 chiếc)</h3>
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Đóng gói hút chân không lịch sự, thơm giòn chuẩn vị làng nghề truyền thống đôi bờ sông La.</p>
+                    </div>
+                </div>
+                <div class="p-5 pt-0 flex items-center justify-between">
+                    <span class="text-lg font-extrabold text-brand-700">85.000đ</span>
+                    <button onclick="addItemToCart('Set Quà Bánh Tráng Vừng Đen Đức Thọ', 85000)" class="bg-slate-900 hover:bg-brand-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl transition">+ Thêm vào giỏ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TRANG 5: TOUR RIÊNG DOANH NGHIỆP (B2B MICE) & TRƯỜNG HỌC ==================== -->
+    <div id="page-mice" class="tab-page py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+            <div class="lg:col-span-6 space-y-5">
+                <span class="text-indigo-700 font-bold text-xs uppercase tracking-widest bg-indigo-50 px-3 py-1 rounded-full">Dịch vụ B2B MICE & Giáo dục Di sản</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900">Đặt Hàng Tour Riêng Cho Doanh Nghiệp (B2B MICE) & Trường Học</h2>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Thiết kế lịch trình thuê nguyên chuyến du thuyền dành riêng cho các cơ quan, doanh nghiệp tổ chức sự kiện và các trường học tổ chức tour trải nghiệm di sản ngoại khóa.
+                </p>
+
+                <div class="space-y-4 text-xs">
+                    <div class="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-1.5">
+                        <div class="font-bold text-base text-slate-900">🏫 Gói Tour Trường Học: "Một Ngày Em Làm Nghệ Nhân Ví, Giặm"</div>
+                        <p class="text-slate-600 leading-relaxed">Học sinh – sinh viên được trải nghiệm kính AR tìm hiểu lịch sử đôi bờ sông La, học hát Ví, Giặm trực tiếp cùng Nghệ nhân Dân gian và tìm hiểu làng nghề bánh tráng, hến sông La.</p>
+                    </div>
+                    <div class="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-1.5">
+                        <div class="font-bold text-base text-slate-900">🤝 Gói Doanh Nghiệp (B2B MICE): Hội Thảo & Tiệc Đặc Sản Trên Sông</div>
+                        <p class="text-slate-600 leading-relaxed">Không gian hội nghị xanh không tiếng ồn, tiệc chiêu đãi đối tác với ẩm thực Đức Thọ, biểu diễn Ví, Giặm theo yêu cầu và bộ quà lưu niệm thủ công gắn thương hiệu.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-lg space-y-4">
+                <h3 class="font-serif text-2xl font-bold text-slate-900">Công Cụ Tính Báo Giá & Đặt Tour Đoàn</h3>
+                <div class="grid sm:grid-cols-2 gap-4 text-xs">
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Loại hình đoàn</label>
+                        <select id="mice-pkg-type" onchange="calcMiceQuote()" class="w-full p-3 rounded-xl border border-slate-300 font-semibold">
+                            <option value="150000">Tour Trường học - Trải nghiệm Di sản (150.000đ/HS)</option>
+                            <option value="450000">Tour Doanh nghiệp B2B MICE + Tiệc Đức Thọ (450.000đ/khách)</option>
+                            <option value="320000">Thuê nguyên chuyến Du thuyền + Ẩm thực (320.000đ/khách)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Số lượng thành viên</label>
+                        <input type="number" id="mice-guest-count" value="30" min="15" max="200" oninput="calcMiceQuote()" class="w-full p-3 rounded-xl border border-slate-300 font-bold">
+                    </div>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4 text-xs">
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Tên Trường / Doanh nghiệp</label>
+                        <input type="text" id="mice-org-name" placeholder="VD: Trường THPT / Công ty..." class="w-full p-3 rounded-xl border border-slate-300">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-600 mb-1">Số điện thoại người phụ trách</label>
+                        <input type="tel" id="mice-org-phone" placeholder="09xx xxx xxx" class="w-full p-3 rounded-xl border border-slate-300">
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs text-indigo-700 font-bold block">Chi phí dự kiến toàn đoàn (Đã giảm 10% ưu đãi đoàn):</span>
+                        <span id="mice-total-price" class="text-2xl font-extrabold text-indigo-900">4.050.000đ</span>
+                    </div>
+                    <button onclick="bookMiceTour()" class="bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs px-5 py-3 rounded-xl shadow transition">
+                        Đặt Tour Đoàn Ngay
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TRANG 6: GIẢI PHÁP NHÂN SỰ & CỘNG ĐỒNG (IMPACT) ==================== -->
+    <div id="page-impact" class="tab-page py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10">
+            <span class="text-brand-700 font-bold text-xs uppercase tracking-widest">Giải pháp Nhân sự & Cộng đồng (Impact)</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-1">Đồng Hành Cùng Nghệ Nhân Dân Gian & "Trẻ Hóa" Lực Lượng Biểu Diễn</h2>
+            <p class="text-sm text-slate-600 mt-1">Kết hợp chặt chẽ với các Nghệ nhân Dân gian và CLB Ví Giặm địa phương để tạo sinh kế bền vững, đồng thời truyền lửa cho thế hệ sinh viên và thanh niên trẻ kế cận.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+                <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full">Nghệ nhân Dân gian</span>
+                <h3 class="font-bold text-lg text-slate-900">Tạo Sinh Kế Bền Vững Cho Nghệ Nhân Địa Phương</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Các nghệ nhân từ các CLB Ví, Giặm đôi bờ sông La có lịch biểu diễn cố định hàng tuần trên du thuyền với mức thù lao xứng đáng và quỹ bảo tồn trích trực tiếp từ doanh thu vé.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">Trẻ hóa lực lượng</span>
+                <h3 class="font-bold text-lg text-slate-900">Ươm Mầm Thế Hệ Biểu Diễn Trẻ & Sinh Viên</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">Giải quyết bài toán "trẻ hóa" lực lượng biểu diễn bằng mô hình cặp đôi Nghệ nhân lão thành – Sinh viên trẻ cùng đứng sân khấu, vừa hát Ví, Giặm vừa vận hành thuyết minh công nghệ số.</p>
+            </div>
+
+            <div class="bg-brand-900 text-white rounded-3xl p-6 shadow-lg flex flex-col justify-between space-y-4">
+                <div>
+                    <span class="text-xs font-bold text-amber-300 uppercase">Đăng ký Cộng tác viên & CLB</span>
+                    <h3 class="font-serif text-2xl font-bold mt-1">Gia Nhập Đội Ngũ Biểu Diễn Trẻ LaRiver Culture</h3>
+                    <p class="text-xs text-slate-300 mt-2 leading-relaxed">Dành cho các CLB Ví, Giặm địa phương và các bạn sinh viên yêu di sản muốn tham gia biểu diễn, dẫn chương trình hoặc truyền thông dự án.</p>
+                </div>
+                <button onclick="showToast('✅ Đã mở form đăng ký CLB Ví Giặm & Tình nguyện viên trẻ! Bạn có thể để lại SĐT ở mục Giỏ hàng/Liên hệ.')" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition">
+                    Đăng Ký Tham Gia Ngay
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== HUY HIỆU LOGO VUTECH NỔI Ở GÓC DƯỚI BÊN TRÁI MÀN HÌNH ==================== -->
+    <div class="fixed bottom-4 left-4 z-40 flex items-center gap-2.5 bg-white/95 backdrop-blur-md p-2 pr-4 rounded-2xl shadow-xl border border-slate-200 hover:scale-105 transition cursor-pointer" onclick="document.getElementById('custom-logo-input').click()" title="Bấm để thay ảnh logo từ máy của bạn">
+        <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center p-1">
+            <svg class="vutech-svg-logo w-9 h-9"><use href="#vutech-logo-symbol"></use></svg>
+            <img class="vutech-img-logo hidden w-9 h-9 object-contain" alt="VUTECH">
+        </div>
+        <div class="text-left">
+            <div class="text-[11px] font-extrabold text-vutech-blue leading-tight">SV-VUTECH 2026</div>
+            <div class="text-[10px] text-slate-500">Dự án LaRiver Culture</div>
+        </div>
+    </div>
+
+    <!-- ==================== DRAWER GIỎ HÀNG & XUẤT VÉ QR ==================== -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-sm flex justify-end">
+        <div class="bg-white w-full max-w-md h-full p-6 flex flex-col justify-between shadow-2xl overflow-y-auto">
+            <div>
+                <div class="flex items-center justify-between border-b pb-4">
+                    <div class="flex items-center gap-2">
+                        <svg class="vutech-svg-logo w-7 h-7"><use href="#vutech-logo-symbol"></use></svg>
+                        <img class="vutech-img-logo hidden w-7 h-7 object-contain" alt="VUTECH">
+                        <h3 class="font-serif text-xl font-bold text-slate-900">Giỏ Hàng & Đặt Vé</h3>
+                    </div>
+                    <button onclick="closeCartDrawer()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 font-bold">✕</button>
+                </div>
+
+                <div id="cart-list" class="my-4 space-y-2.5 max-h-[42vh] overflow-y-auto text-xs"></div>
+
+                <div id="eticket-box" class="hidden my-4 p-4 rounded-2xl bg-brand-50 border-2 border-brand-600 text-xs space-y-2">
+                    <div class="flex items-center justify-between border-b border-brand-200 pb-2">
+                        <span class="font-extrabold text-brand-900">🎫 VÉ ĐIỆN TỬ LARIVER CULTURE</span>
+                        <span id="eticket-code" class="font-mono font-bold text-vutech-blue">LRV-8899</span>
+                    </div>
+                    <div id="eticket-details" class="text-slate-700 space-y-1"></div>
+                    <div class="pt-2 flex items-center justify-between text-[11px] text-emerald-800 font-semibold">
+                        <span>✔ Đã tích hợp Tai nghe GPS & Kính AR</span>
+                        <button onclick="window.print()" class="underline font-bold">🖨️ In vé</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t pt-4 space-y-3 text-xs">
+                <div class="flex justify-between items-center text-sm font-bold">
+                    <span>Tổng cộng:</span>
+                    <span id="cart-total-amount" class="text-xl text-brand-700 font-extrabold">0đ</span>
+                </div>
+                <input type="text" id="cust-name" placeholder="Họ và tên người đặt *" class="w-full p-3 rounded-xl border border-slate-300">
+                <input type="tel" id="cust-phone" placeholder="Số điện thoại nhận vé QR *" class="w-full p-3 rounded-xl border border-slate-300">
+                <button onclick="completeBooking()" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-3.5 rounded-xl shadow transition text-sm">
+                    Xác Nhận Đặt & Xuất Vé Điện Tử Ngay
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thông báo Toast góc phải -->
+    <div id="toast-msg" class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-2xl border border-amber-400"></div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 py-12 mt-16 border-t border-slate-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-3 gap-8 items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-white p-1 shrink-0">
+                    <svg class="vutech-svg-logo w-10 h-10"><use href="#vutech-logo-symbol"></use></svg>
+                    <img class="vutech-img-logo hidden w-10 h-10 object-contain" alt="VUTECH">
+                </div>
+                <div>
+                    <div class="font-serif font-bold text-white text-base">LARIVER CULTURE • SV-VUTECH 2026</div>
+                    <p class="text-slate-500 mt-0.5">Di sản Ví, Giặm trên Du thuyền Xanh Sông La</p>
+                </div>
+            </div>
+            <div>
+                <span class="text-white font-bold uppercase block mb-1.5">Trải nghiệm cốt lõi</span>
+                <p>Tai nghe GPS đa ngôn ngữ • Kính thực tế ảo AR • Du thuyền Năng lượng Mặt trời & Hybrid • Đặc sản Đức Thọ • CLB Ví, Giặm</p>
+            </div>
+            <div class="sm:text-right">
+                <span class="text-white font-bold uppercase block mb-1">Bến Tam Soa – Sông La, Đức Thọ</span>
+                <p>Hotline: 0971006727 • Email: info@lariverculture.vn</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Đổi ảnh Logo toàn trang
+        function handleLogoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.querySelectorAll('.vutech-svg-logo').forEach(el => el.classList.add('hidden'));
+                document.querySelectorAll('.vutech-img-logo').forEach(img => {
+                    img.src = e.target.result;
+                    img.classList.remove('hidden');
+                });
+                showToast('✅ Đã cập nhật hình ảnh Logo của bạn lên toàn bộ góc trang web!');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Cho phép chọn trực tiếp ảnh sản phẩm từ máy và lưu vào trình duyệt (localStorage)
+        let targetProductImgId = null;
+        function triggerProductImgUpload(imgId) {
+            targetProductImgId = imgId;
+            document.getElementById('product-img-input').click();
+        }
+
+        function handleProductImgUpload(event) {
+            const file = event.target.files[0];
+            if (!file || !targetProductImgId) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const dataUrl = e.target.result;
+                const imgEl = document.getElementById(targetProductImgId);
+                if (imgEl) {
+                    imgEl.src = dataUrl;
+                    try {
+                        localStorage.setItem('lariver_img_' + targetProductImgId, dataUrl);
+                    } catch (err) {}
+                    showToast('🖼️ Đã cập nhật hình ảnh sản phẩm thành công!');
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Tự động khôi phục ảnh sản phẩm đã chọn nếu có trong bộ nhớ trình duyệt
+        function restoreSavedProductImages() {
+            const ids = ['shop-img-boat', 'shop-img-banhgai', 'shop-img-buoi', 'shop-img-ruou', 'shop-img-nonquat', 'shop-img-banhtrang'];
+            ids.forEach(id => {
+                try {
+                    const saved = localStorage.getItem('lariver_img_' + id);
+                    if (saved) {
+                        const el = document.getElementById(id);
+                        if (el) el.src = saved;
+                    }
+                } catch (err) {}
+            });
+        }
+
+        // Chuyển đổi giữa các trang (SPA Navigation)
+        function switchPage(pageId) {
+            document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + pageId).classList.add('active');
+
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) activeNav.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showToast(text) {
+            const t = document.getElementById('toast-msg');
+            t.innerText = text;
+            t.classList.remove('hidden');
+            setTimeout(() => t.classList.add('hidden'), 3200);
+        }
+
+        let currentBoatSeat = 'Bàn Trung Tâm A2';
+        function selectBoatSeat(btn, seatName) {
+            document.querySelectorAll('.seat-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            currentBoatSeat = seatName;
+            document.getElementById('selected-seat-label').innerText = seatName;
+            showToast('🛥️ Đã chọn vị trí: ' + seatName);
+        }
+
+        let cartItems = [
+            { name: 'Combo Du thuyền + Ẩm thực Đức Thọ (Bánh tráng, Hến sông La, Rượu nếp)', price: 350000, qty: 2 }
+        ];
+
+        function addItemToCart(name, price, qty = 1) {
+            const found = cartItems.find(i => i.name === name);
+            if (found) found.qty += qty;
+            else cartItems.push({ name, price, qty });
+            updateCartUI();
+            showToast('🛒 Đã thêm "' + name + '" vào giỏ hàng!');
+        }
+
+        function removeCartItem(idx) {
+            cartItems.splice(idx, 1);
+            updateCartUI();
+        }
+
+        function quickAddFromHome() {
+            const raw = document.getElementById('home-quick-pkg').value.split('|');
+            const qty = Math.max(1, parseInt(document.getElementById('home-quick-qty').value || 1));
+            addItemToCart(raw[0], parseInt(raw[1]), qty);
+            openCartDrawer();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('header-cart-badge');
+            const list = document.getElementById('cart-list');
+            const totalEl = document.getElementById('cart-total-amount');
+
+            const totalQty = cartItems.reduce((s, i) => s + i.qty, 0);
+            const totalCost = cartItems.reduce((s, i) => s + (i.price * i.qty), 0);
+
+            badge.innerText = totalQty;
+            totalEl.innerText = totalCost.toLocaleString('vi-VN') + 'đ';
+
+            if (cartItems.length === 0) {
+                list.innerHTML = '<p class="text-slate-400 text-center py-6">Giỏ hàng của bạn đang trống.</p>';
+                return;
+            }
+
+            list.innerHTML = cartItems.map((item, idx) => `
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex justify-between items-center gap-2">
+                    <div>
+                        <div class="font-bold text-slate-900">${item.name}</div>
+                        <div class="text-slate-500 mt-0.5">${item.price.toLocaleString('vi-VN')}đ × ${item.qty}</div>
+                    </div>
+                    <button onclick="removeCartItem(${idx})" class="text-red-500 font-bold px-2">Xóa</button>
+                </div>
+            `).join('');
+        }
+
+        function openCartDrawer() {
+            updateCartUI();
+            document.getElementById('cart-drawer').classList.remove('hidden');
+        }
+
+        function closeCartDrawer() {
+            document.getElementById('cart-drawer').classList.add('hidden');
+        }
+
+        function completeBooking() {
+            if (cartItems.length === 0) {
+                showToast('⚠️ Vui lòng chọn ít nhất 1 dịch vụ trong giỏ hàng!');
+                return;
+            }
+            const name = document.getElementById('cust-name').value || 'Quý khách LaRiver';
+            const phone = document.getElementById('cust-phone').value || '0988xxxxxx';
+            const totalCost = cartItems.reduce((s, i) => s + (i.price * i.qty), 0);
+            const code = 'LRV-' + Math.floor(1000 + Math.random() * 9000);
+
+            document.getElementById('eticket-code').innerText = code;
+            document.getElementById('eticket-details').innerHTML = `
+                <div>👤 <strong>Khách hàng:</strong> ${name} (${phone})</div>
+                <div>🛥️ <strong>Vị trí bàn giữ chỗ:</strong> ${currentBoatSeat}</div>
+                <div>📦 <strong>Dịch vụ:</strong> ${cartItems.map(i => i.name + ' (x' + i.qty + ')').join(', ')}</div>
+                <div>💰 <strong>Tổng thanh toán:</strong> ${totalCost.toLocaleString('vi-VN')}đ</div>
+            `;
+            document.getElementById('eticket-box').classList.remove('hidden');
+            showToast('🎉 Xuất vé điện tử thành công! Mã vé: ' + code);
+        }
+
+        const stations = [
+            {
+                img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+                arDesc: "✨ Tái hiện 3D Thế kỷ XIX: Đoàn thuyền mộc buôn gỗ xuôi dòng sông La, cảnh chợ bến Tam Soa cổ và hình ảnh cư dân hát đối đáp Ví đò đưa.",
+                vi: { title: "Trạm GPS #1: Bến Tam Soa & Lịch Sử Đôi Bờ Sông La", script: "Khi du thuyền đi qua ngã ba Bến Tam Soa – nơi hội tụ của sông Ngàn Sâu và Ngàn Phố tạo nên dòng sông La, tai nghe GPS tự động thuyết minh về lịch sử thương cảng cổ và làn điệu Ví đò đưa." },
+                en: { title: "GPS Stop #1: Tam Soa Wharf & The La River Confluence", script: "As our solar cruise passes Tam Soa Wharf where Ngan Sau and Ngan Pho rivers merge into the La River, your GPS headset automatically narrates the history of the ancient timber port." },
+                fr: { title: "Arrêt GPS #1: Quai de Tam Soa & La Rivière La", script: "Au confluent des rivières Ngan Sau et Ngan Pho formant la rivière La, l'audioguide GPS active automatiquement le récit historique du port ancien." }
+            },
+            {
+                img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
+                arDesc: "✨ Tái hiện AR Sân khấu Nổi: Hiển thị lời cổ Ví, Giặm song ngữ bay lơ lửng trên mặt nước cùng khung cảnh làng quê Nghệ Tĩnh xưa.",
+                vi: { title: "Trạm GPS #2: Không Gian Diễn Xướng Di Sản Ví, Giặm", script: "Du thuyền vận hành bằng năng lượng mặt trời và động cơ điện hybrid không tiếng ồn, giúp du khách thưởng thức trọn vẹn tiếng hát mộc mạc của các Nghệ nhân Dân gian và CLB Ví Giặm trẻ." },
+                en: { title: "GPS Stop #2: Floating Stage of UNESCO Vi, Giam Heritage", script: "Powered by silent solar-hybrid energy with zero engine noise, enjoy authentic Vi, Giam folk performances by local folk artisans and young club members." },
+                fr: { title: "Arrêt GPS #2: Scène Flottante du Patrimoine Vi, Giam", script: "Propulsé par l'énergie solaire hybride sans bruit de moteur, profitez pleinement des chants traditionnels Vi, Giam classés par l'UNESCO." }
+            },
+            {
+                img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80",
+                arDesc: "✨ Tái hiện AR Làng nghề Đức Thọ: Mô phỏng 3D nghề cào hến sông La, tráng bánh vừng đen, gói bánh gai và ủ rượu nếp truyền thống của cư dân đôi bờ.",
+                vi: { title: "Trạm GPS #3: Làng Nghề Đôi Bờ & Ẩm Thực Đặc Sản Đức Thọ", script: "Khám phá câu chuyện làng nghề truyền thống đôi bờ sông La và thưởng thức đặc sản Đức Thọ ngay trên thuyền: Hến sông La xúc bánh tráng giòn rụm, bánh gai dẻo thơm và rượu nếp ấm nồng." },
+                en: { title: "GPS Stop #3: Craft Villages & Duc Tho Specialties", script: "Discover traditional riverside craft villages while savoring Duc Tho specialties on board: La River clams with crispy sesame rice paper, Ban Gai, and sticky rice wine." },
+                fr: { title: "Arrêt GPS #3: Villages d'Artisanat & Gastronomie de Duc Tho", script: "Découvrez les villages artisanaux et dégustez à bord les spécialités de Duc Tho : palourdes de la rivière La, galettes de riz et vin de riz gluant." }
+            }
+        ];
+
+        let stIndex = 0;
+        let gpsLang = 'vi';
+        let arActive = false;
+
+        function setGpsStation(idx) {
+            stIndex = idx;
+            [0, 1, 2].forEach(i => {
+                document.getElementById('st-' + i).className = (i === idx)
+                    ? "px-3.5 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs"
+                    : "px-3.5 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs hover:bg-slate-700";
+            });
+            renderTechSimulator();
+        }
+
+        function setGpsLang(l) {
+            gpsLang = l;
+            ['vi', 'en', 'fr'].forEach(code => {
+                document.getElementById('gl-' + code).className = (code === l)
+                    ? "px-2.5 py-1 rounded-lg bg-brand-600 text-white font-bold"
+                    : "px-2.5 py-1 rounded-lg text-slate-300";
+            });
+            renderTechSimulator();
+        }
+
+        function changeLanguage(l) {
+            setGpsLang(l);
+            showToast('🌐 Đã chuyển ngôn ngữ thuyết minh GPS sang: ' + l.toUpperCase());
+        }
+
+        function toggleTechAr() {
+            arActive = !arActive;
+            renderTechSimulator();
+        }
+
+        function renderTechSimulator() {
+            const cur = stations[stIndex];
+            document.getElementById('tech-scene-img').src = cur.img;
+            document.getElementById('tech-station-title').innerText = cur[gpsLang].title;
+            document.getElementById('tech-station-script').innerText = cur[gpsLang].script;
+            document.getElementById('tech-ar-desc').innerHTML = cur.arDesc;
+
+            const layer = document.getElementById('tech-ar-layer');
+            const btn = document.getElementById('tech-ar-btn');
+            if (arActive) {
+                layer.classList.remove('hidden');
+                btn.innerText = "Tắt Kính AR (Xem Khung Cảnh Thực)";
+            } else {
+                layer.classList.add('hidden');
+                btn.innerText = "🥽 Bật Chế Độ Kính Thực Tế Ảo (AR)";
+            }
+        }
+
+        function toggleVoiceNarration() {
+            const eq = document.getElementById('voice-eq');
+            const scriptText = stations[stIndex][gpsLang].script;
+            eq.classList.remove('hidden');
+            eq.classList.add('flex');
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(scriptText);
+                utter.lang = gpsLang === 'vi' ? 'vi-VN' : (gpsLang === 'en' ? 'en-US' : 'fr-FR');
+                utter.onend = () => {
+                    eq.classList.add('hidden');
+                    eq.classList.remove('flex');
+                };
+                window.speechSynthesis.speak(utter);
+            } else {
+                setTimeout(() => {
+                    eq.classList.add('hidden');
+                    eq.classList.remove('flex');
+                }, 3500);
+            }
+        }
+
+        function calcMiceQuote() {
+            const unitPrice = parseInt(document.getElementById('mice-pkg-type').value || 150000);
+            const guests = Math.max(10, parseInt(document.getElementById('mice-guest-count').value || 30));
+            const discounted = Math.round(unitPrice * guests * 0.9);
+            document.getElementById('mice-total-price').innerText = discounted.toLocaleString('vi-VN') + 'đ';
+        }
+
+        function bookMiceTour() {
+            const selectEl = document.getElementById('mice-pkg-type');
+            const pkgName = selectEl.options[selectEl.selectedIndex].text.split('(')[0].trim();
+            const guests = Math.max(10, parseInt(document.getElementById('mice-guest-count').value || 30));
+            const unitPrice = Math.round(parseInt(selectEl.value) * 0.9);
+            addItemToCart(`${pkgName} (Đoàn ưu đãi)`, unitPrice, guests);
+            openCartDrawer();
+        }
+
+        // Khởi tạo
+        updateCartUI();
+        restoreSavedProductImages();
+    </script>
+</body>
+</html>
